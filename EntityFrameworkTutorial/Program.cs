@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EntityFrameworkTutorial.Models;
+using System;
+using System.Linq;
 
 namespace EntityFrameworkTutorial
 {
@@ -6,7 +8,21 @@ namespace EntityFrameworkTutorial
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using (var context = new SchoolContext())
+            {
+                var std = new Student()
+                {
+                    Name = "Bill"
+                };
+
+                context.Students.Add(std);
+                context.SaveChanges();
+            }
+        }
+        
+        public static string GetName()
+        {
+            return "Bill";
         }
     }
 }
